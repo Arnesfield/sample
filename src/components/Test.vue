@@ -13,12 +13,24 @@
 
     <button v-on:click="greet('Hello World')">Greet</button>
     <input type="text" v-on:keyup="pressKey" v-on:keyup.enter="enterHit">
+
+    <hr>
+
+    <label for="fname">First Name: </label><input type="text" name="" id="" v-model="user.fname">
+    <h3>{{ fullname  }}</h3>
+    <h2>{{ msg }}</h2>
   </div>
 </template>
 
 <script>
 export default {
   name: 'test',
+  props: {
+    msg: {
+      type: String,
+      default: 'Foobar'
+    }
+  },
   data () {
     return {
       title: 'Hello world',
@@ -43,6 +55,11 @@ export default {
     },
     enterHit: function() {
       console.log('You hit enter')
+    }
+  },
+  computed: {
+    fullname: function() {
+      return this.user.fname + ' ' + this.user.lname
     }
   }
 }
