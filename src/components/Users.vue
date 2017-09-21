@@ -39,26 +39,7 @@ export default {
   data() {
     return {
       newUser: {},
-      users: [
-        {
-          id: 1,
-          name: 'John Doe',
-          email: 'johndoe@mail.com',
-          contacted: false
-        },
-        {
-          id: 2,
-          name: 'Jane Doe',
-          email: 'janedoe@mail.com',
-          contacted: false
-        },
-        {
-          id: 3,
-          name: 'John Smith',
-          email: 'johnsmith@mail.com',
-          contacted: false
-        },
-      ]
+      users: []
     }
   },
   methods: {
@@ -76,6 +57,12 @@ export default {
   },
   computed: {
     
+  },
+  created: function() {
+    this.$http.get('https://jsonplaceholder.typicode.com/users')
+      .then(function(response) {
+        this.users = response.data
+      })
   }
 }
 </script>
